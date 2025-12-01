@@ -13,10 +13,3 @@ Upload to the server.
 Observed that there remote server connects to the attacker-supplied URLs.
 <img width="1217" height="381" alt="image" src="https://github.com/user-attachments/assets/09f3eb77-e359-4749-ac74-fb43d7968864" />
 
-### Impact
-An attacker can force the server to connect to arbitrary internal/external URLs (exfiltrate metadata, trigger callbacks, access internal services) from the host running Stirling-PDF. This may enable enumeration of internal networks, access to metadata services (cloud metadata), or pivoting depending on host environment and network restrictions.
-
-### Mitigations
-- Block external fetching by default. Disable external resource fetching in the conversion API unless explicitly needed (e.g., remove img/link loading, or sanitize input HTML).
-- Apply egress restrictions at the application level or host firewall so the PDF worker cannot reach internal IP ranges or cloud metadata endpoints. Block 169.254.169.254 and RFC1918 ranges from the PDF worker.
-- Whitelist domains if remote resources must be allowed; only allow known safe hosts.
